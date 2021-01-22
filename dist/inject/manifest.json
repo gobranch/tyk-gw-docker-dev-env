@@ -1,0 +1,14 @@
+{
+  "custom_middleware": {
+    "driver": "otto",
+    "pre": [
+      {
+        "name": "graphQLInjectPreMiddlewarea",
+        "require_session": true,
+        "raw_body_only": false
+      }
+    ]
+  },
+  "file_list": ["inject.js"],
+  "signature": ""
+}
