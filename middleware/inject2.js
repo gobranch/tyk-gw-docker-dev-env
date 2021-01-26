@@ -47,15 +47,6 @@ graphQLInjectPreMiddlewarea.NewProcessRequest(function (
 
   if (bodyObject.query) {
     var newQuery = bodyObject.query;
-    var firstParen = newQuery.indexOf("(");
-    if (firstParen >= 0) {
-      firstParen += 1;
-      newQuery =
-        newQuery.substr(0, firstParen) +
-        "$affinity: String, $affinityChecksum: String, " +
-        newQuery.substr(firstParen);
-      log("query after A: " + newQuery);
-    }
     var rqPos = newQuery.indexOf("requestQuote(");
     console.log("rqPos: ", newQuery.slice(0, rqPos));
     if (rqPos >= 0) {
@@ -63,19 +54,16 @@ graphQLInjectPreMiddlewarea.NewProcessRequest(function (
       console.log("rqPos2: ", newQuery.slice(0, rqPos));
       var newQuery =
         newQuery.substr(0, rqPos) +
-        "affinity: $affinity, affinityChecksum: $affinityChecksum, " +
+        'affinity: "' +
+        affinity +
+        '", affinityChecksum: "' +
+        affinityChecksum +
+        '", ' +
         newQuery.substr(rqPos);
       log("query after B: " + newQuery);
     }
     bodyObject.query = newQuery;
     log("query after C: " + newQuery);
-
-    // Rewrite the Variable
-    if (!bodyObject.variables) {
-      bodyObject.variables = {};
-    }
-    bodyObject.variables.affinity = affinity;
-    bodyObject.variables.affinityChecksum = affinityChecksum;
 
     // Override the body:
     log("Request After: " + JSON.stringify(bodyObject));

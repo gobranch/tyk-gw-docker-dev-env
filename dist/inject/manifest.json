@@ -5,7 +5,8 @@
       {
         "name": "graphQLInjectPreMiddlewarea",
         "require_session": true,
-        "raw_body_only": false
+        "raw_body_only": false,
+        "path": "inject.js"
       }
     ]
   },

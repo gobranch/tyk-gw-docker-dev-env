@@ -37,30 +37,19 @@ graphQLInjectPreMiddlewarea.NewProcessRequest(function (
   // Rewrite the Query
   if (bodyObject.query) {
     var newQuery = bodyObject.query;
-    var firstParen = newQuery.indexOf("(");
-    if (firstParen >= 0) {
-      firstParen += 1;
-      newQuery =
-        newQuery.substr(0, firstParen) +
-        "$affinity: String, $affinityChecksum: String, " +
-        newQuery.substr(firstParen);
-    }
     var rqPos = newQuery.indexOf("requestQuote(");
     if (rqPos >= 0) {
       rqPos += 13;
       var newQuery =
         newQuery.substr(0, rqPos) +
-        "affinity: $affinity, affinityChecksum: $affinityChecksum, " +
+        'affinity: "' +
+        affinity +
+        '", affinityChecksum: "' +
+        affinityChecksum +
+        '", ' +
         newQuery.substr(rqPos);
     }
     bodyObject.query = newQuery;
-
-    // Rewrite the Variable
-    if (!bodyObject.variables) {
-      bodyObject.variables = {};
-    }
-    bodyObject.variables.affinity = affinity;
-    bodyObject.variables.affinityChecksum = affinityChecksum;
 
     // Override the body:
     request.Body = JSON.stringify(bodyObject);

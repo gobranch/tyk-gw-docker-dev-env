@@ -53,7 +53,7 @@ curl 'localhost:8081/tyk-api-test/post' \
   -H 'sec-ch-ua: "Google Chrome";v="87", " Not;A Brand";v="99", "Chromium";v="87"' \
   -H 'accept: */*' \
   -H 'x-amz-user-agent: aws-amplify/2.0.3' \
-  -H 'Authorization: default3293c57843024b2e9a5e5bc7500fde6e' \
+  -H 'Authorization: default9714673583bd4ee88b358501ae5e1b68' \
   -H 'sec-ch-ua-mobile: ?0' \
   -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36' \
   -H 'content-type: application/json' \
