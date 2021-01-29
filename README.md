@@ -66,6 +66,27 @@ curl 'localhost:8081/tyk-api-test/post' \
   --data-binary $'{"operationName":null,"variables":{"address":"100 Beatrice Dr","city":"Dayton","state":"OH","zip":"45404","rep":"jemison","fname":"Kurt","lname":"Muldrew","isApartment":false,"dateOfBirth":null,"currentAutoCarrier":null,"currentAutoLimitBIPD":null,"continuousAutoCoverageYears":null,"driversLicenseState":null,"driversLicenseNumber":null,"insuranceInPast31Days":false,"home":{}},"query":"query ($address: String\u0021, $city: String\u0021, $state: String\u0021, $zip: String\u0021, $unit: String, $isApartment: Boolean, $fname: String\u0021, $lname: String\u0021, $email: AWSEmail, $phone: String, $leadSource: String, $rep: String\u0021, $priorAddress: AddressDetailsInput, $dateOfBirth: AWSDate, $currentAutoCarrier: String, $currentAutoLimitBIPD: String, $continuousAutoCoverageYears: Int, $driversLicenseState: String, $driversLicenseNumber: String, $insuranceInPast31Days: Boolean, $fromStaff: Boolean, $VIN: String, $home: HomeDetailsInput) {   offer: requestQuote(userInput: {address: $address, city: $city, state: $state, zip: $zip, unit: $unit, isApartment: $isApartment, fname: $fname, lname: $lname, email: $email, phone: $phone, leadSource: $leadSource, rep: $rep, priorAddress: $priorAddress, dateOfBirth: $dateOfBirth, currentAutoCarrier: $currentAutoCarrier, currentAutoLimitBIPD: $currentAutoLimitBIPD, insuranceInPast31Days: $insuranceInPast31Days, continuousAutoCoverageYears: $continuousAutoCoverageYears, driversLicenseState: $driversLicenseState, driversLicenseNumber: $driversLicenseNumber, fromStaff: $fromStaff, VIN: $VIN, home: $home}) {     ...OfferFragment     __typename   } }  fragment OfferFragment on Offer {   id   } "}'
 ```
 
+or
+
+```
+curl 'localhost:8081/tyk-api-test/post' \
+  -H 'authority: short-term-noise-gw.aws-use1.cloud-ara.tyk.io' \
+  -H 'sec-ch-ua: "Google Chrome";v="87", " Not;A Brand";v="99", "Chromium";v="87"' \
+  -H 'accept: */*' \
+  -H 'authorization: default9714673583bd4ee88b358501ae5e1b68' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36' \
+  -H 'content-type: application/json' \
+  -H 'origin: https://short-term-noise-gw.aws-use1.cloud-ara.tyk.io' \
+  -H 'sec-fetch-site: same-origin' \
+  -H 'sec-fetch-mode: cors' \
+  -H 'sec-fetch-dest: empty' \
+  -H 'referer: https://short-term-noise-gw.aws-use1.cloud-ara.tyk.io/branch/playground' \
+  -H 'accept-language: en-US,en;q=0.9' \
+  --data-binary '{"operationName":"rq","variables":{},"query":"query rq {\n  requestQuote(userInput: {fname: \"Kurt\", lname: \"Muldrew\", address: \"100 Beatrice Rd\", city: \"Dayton\", state: \"OH\", zip: \"45404\"}) {\n    id\n  }\n}\n"}' \
+  --compressed
+```
+
 ## Bundle the code
 
 from the dist/inject folder:
